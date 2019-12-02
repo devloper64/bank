@@ -1,8 +1,8 @@
 package com.coder.bank.model;
 
 
-public enum RoleName {
-    ROLE_EMPLOYEE,
-    ROLE_MANAGER,
+public enum  RoleName {
+    ROLE_USER,
+    ROLE_PM,
     ROLE_ADMIN
 }
