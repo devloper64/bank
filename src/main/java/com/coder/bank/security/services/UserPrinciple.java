@@ -12,7 +12,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class UserPrinciple implements UserDetails {
-
     private static final long serialVersionUID = 1L;
 
     private Long id;
@@ -28,9 +27,7 @@ public class UserPrinciple implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-
-
-    public UserPrinciple (Long id, String name,
+    public UserPrinciple(Long id, String name,
                          String username, String email, String password,
                          Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
@@ -40,6 +37,7 @@ public class UserPrinciple implements UserDetails {
         this.password = password;
         this.authorities = authorities;
     }
+
     public static UserPrinciple build(User user) {
         List<GrantedAuthority> authorities = user.getRoles().stream().map(role ->
                 new SimpleGrantedAuthority(role.getName().name())
@@ -59,71 +57,47 @@ public class UserPrinciple implements UserDetails {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
-        this.authorities = authorities;
-    }
-
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+    public String getUsername() {
+        return username;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
-    public String getUsername() {
-        return null;
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     @Override
